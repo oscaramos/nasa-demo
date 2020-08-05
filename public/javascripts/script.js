@@ -21,10 +21,18 @@ function loadLaunches() {
 
 function loadPlanets() {
   // TODO: Once API is ready.
-  // const planetSelector = document.getElementById("planets-selector");
-  // planets.forEach((planet) => {
-  //   planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
-  // });
+  const planetSelector = document.getElementById("planets-selector");
+  const planets = [
+    {
+      kepler_name: 'Mars',
+    },
+    {
+      kepler_name: 'Jupyter',
+    }
+  ]
+  planets.forEach((planet) => {
+    planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
+  });
 }
 
 function abortLaunch() {
@@ -46,6 +54,16 @@ function submitLaunch() {
 function listUpcoming() {
   const upcomingList = document.getElementById("upcoming-list");
   upcomingList.innerHTML = `<div class="list-heading">${numberHeading} ${dateHeading} ${missionHeading} ${rocketHeading} ${targetHeading}</div>`;
+  const launches = [
+    {
+      upcoming: true,
+      launchDate: new Date(),
+      flightNumber: 1002,
+      mission: 'NASA DEMO',
+      rocket: 'Falcon One',
+      target: "Mars"
+    }
+  ]
   launches
     .filter((launch) => launch.upcoming)
     .forEach((launch) => {
