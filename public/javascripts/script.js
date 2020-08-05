@@ -20,19 +20,14 @@ function loadLaunches() {
 }
 
 function loadPlanets() {
-  // TODO: Once API is ready.
   const planetSelector = document.getElementById("planets-selector");
-  const planets = [
-    {
-      kepler_name: 'Mars',
-    },
-    {
-      kepler_name: 'Jupyter',
-    }
-  ]
-  planets.forEach((planet) => {
-    planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
-  });
+  fetch('/planets')
+    .then(resp => resp.json())
+    .then(planets => {
+      planets.forEach((planet) => {
+        planetSelector.innerHTML += `<option value="${planet.kepler_name}">${planet.kepler_name}</option>`;
+      });
+    })
 }
 
 function abortLaunch() {
