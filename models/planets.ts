@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { join } from 'https://deno.land/std/path/mod.ts';
 import { BufReader } from 'https://deno.land/std/io/bufio.ts';
 import { parse } from "https://deno.land/std/encoding/csv.ts";
@@ -7,6 +8,19 @@ import * as R from 'https://cdn.skypack.dev/ramda@^0.27.0';
 type Planet = Record<string, string>
 
 let planets: Array<Planet>;
+
+// @ts-ignore
+export const filterHabitablePlanets = (planets: array<Planet>) => R.filter((planet: Planet) => {
+  const disposition = planet["koi_disposition"];
+  const planetaryRadius = Number(planet["koi_prad"]);
+  const stellarMass = Number(planet["koi_smass"]);
+  const stellarRadius = Number(planet["koi_srad"]);
+
+  return disposition === "CONFIRMED"
+    && planetaryRadius > 0.5 && planetaryRadius < 1.5
+    && stellarMass > 0.78 && stellarMass < 1.04
+    && stellarRadius > 0.99 && stellarRadius < 1.01;
+})(planets)
 
 
 async function loadPlanetsData() {
@@ -21,18 +35,6 @@ async function loadPlanetsData() {
   });
 
   Deno.close(file.rid);
-
-  // @ts-ignore
-  const filterHabitablePlanets = R.filter((planet: Planet) => {
-    const planetaryRadius = Number(planet["koi_prad"]);
-    const stellarMass = Number(planet["koi_smass"]);
-    const stellarRadius = Number(planet["koi_srad"]);
-
-    return planet["koi_disposition"] === "CONFIRMED"
-      && planetaryRadius > 0.5 && planetaryRadius < 1.5
-      && stellarMass > 0.78 && stellarMass < 1.04
-      && stellarRadius > 0.99 && stellarRadius < 1.01;
-  })
 
   const planets = filterHabitablePlanets(result as Array<Planet>);
 
