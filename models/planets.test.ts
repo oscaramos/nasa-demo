@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { assertEquals, assertNotEquals } from "https://deno.land/std@0.63.0/testing/asserts.ts";
+import { assertEquals, assertNotEquals }  from '../test_deps.ts';
+
 import { filterHabitablePlanets } from "./planets.ts";
 
 const HABITABLE_PLANET = {

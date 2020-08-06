@@ -1,11 +1,5 @@
 // @ts-nocheck
-import * as log from "https://deno.land/std/log/mod.ts";
-
-import { join } from 'https://deno.land/std/path/mod.ts';
-import { BufReader } from 'https://deno.land/std/io/bufio.ts';
-import { parse } from "https://deno.land/std/encoding/csv.ts";
-
-import * as R from 'https://cdn.skypack.dev/ramda@^0.27.0';
+import { join, BufReader, parse, R, log } from '../deps.ts';
 
 type Planet = Record<string, string>
 

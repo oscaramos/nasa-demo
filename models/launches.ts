@@ -1,5 +1,4 @@
-import * as log from 'https://deno.land/std/log/mod.ts';
-import * as R from 'https://cdn.skypack.dev/ramda@^0.27.0';
+import { log, R } from '../deps.ts';
 
 interface Launch {
   flightNumber: number;
