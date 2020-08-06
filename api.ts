@@ -1,6 +1,7 @@
 import { Router } from "https://deno.land/x/oak@v6.0.1/mod.ts";
 
-import * as planets from './models/planets.ts'
+import * as planets from './models/planets.ts';
+import * as launches from './models/launches.ts';
 
 const router = new Router();
 router
@@ -16,9 +17,21 @@ router
                     Mission Control API`;
   })
   .get('/planets', (ctx) => {
-    ctx.throw(400, "Sorry planets aren't available!")
-    ctx.response.body = planets.getAllPlanets()
+    ctx.response.body = planets.getAllPlanets();
+  })
+  .get('/launches', (ctx) => {
+    ctx.response.body = launches.getAll();
+  })
+  .get('/launches/:id', (ctx) => {
+    if (ctx.params?.id) {
+      const launch = launches.getOne(Number(ctx.params.id));
+      if (launch) {
+        ctx.response.body = launch;
+      } else {
+        ctx.throw(400, "Launch with that id doesn't exist");
+      }
+    }
   })
 ;
 
-export default router
+export default router;
