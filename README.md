@@ -32,3 +32,5 @@ Browse to the Mission Control front end at http://localhost:8000/index.html and 
 You can access the requests that were used. 
 Using postman import a collection from `postman/NasaDeno.postman_collection.json` 
 then make the requests supported for this system.
+
+Here is also the api documentation created automatically by postman: https://documenter.getpostman.com/view/10567086/T1LFpWgs?version=latest 
