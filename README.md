@@ -2,7 +2,9 @@
 
 ## Deployment
 
-The website is available on: http://18.144.133.4:8000/index.html
+The project is available on: http://18.144.133.4:8000/index.html
+
+It's deployed using this container hosted on docker hub and the hosting service using AWS EC2
 
 ## Installation
 
