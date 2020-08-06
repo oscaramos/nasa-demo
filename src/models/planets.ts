@@ -20,7 +20,7 @@ export const filterHabitablePlanets = (planets: array<Planet>) => R.filter((plan
 
 
 async function loadPlanetsData() {
-  const path = join("data", "./kepler_exoplanets_nasa.csv");
+  const path = join("data", "kepler_exoplanets_nasa.csv");
 
   const file = await Deno.open(path);
   const bufReader = new BufReader(file);
