@@ -15,6 +15,7 @@ interface Launch {
 
 const launches = new Map<number, Launch>()
 
+
 export async function downloadLaunchData() {
   log.info("Downloading launch data....");
   log.warning("Downloading launch data....");
@@ -47,13 +48,20 @@ export async function downloadLaunchData() {
 await downloadLaunchData();
 
 log.info(`Downloaded for data for ${launches.size} SpaceX launches.`)
+
 export function getAll() {
   return Array.from(launches.values());
 }
-
 export function getOne(id: number) {
   if (launches.has(id)) {
     return launches.get(id);
   }
   return null
+}
+
+export function addOne(data: Launch) {
+   launches.set(data.flightNumber, {...data,
+     upcoming: true,
+     customers: ["Oscar's SAC", "NASA"]
+   });
 }
