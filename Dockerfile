@@ -1,4 +1,4 @@
-FROM hayd/deno:alpine-1.1.1
+FROM hayd/deno:alpine-1.2.2
 
 WORKDIR /app
 
