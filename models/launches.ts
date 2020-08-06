@@ -45,6 +45,7 @@ export async function downloadLaunchData() {
   }
 }
 
+
 await downloadLaunchData();
 
 log.info(`Downloaded for data for ${launches.size} SpaceX launches.`)
@@ -52,16 +53,25 @@ log.info(`Downloaded for data for ${launches.size} SpaceX launches.`)
 export function getAll() {
   return Array.from(launches.values());
 }
+
 export function getOne(id: number) {
   if (launches.has(id)) {
     return launches.get(id);
   }
   return null
 }
-
 export function addOne(data: Launch) {
    launches.set(data.flightNumber, {...data,
      upcoming: true,
      customers: ["Oscar's SAC", "NASA"]
    });
+}
+
+export function removeOne(id: number) {
+  const aborted = launches.get(id);
+  if (aborted) {
+    aborted.upcoming = false;
+    aborted.success = false;
+    return aborted
+  }
 }

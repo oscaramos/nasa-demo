@@ -40,6 +40,12 @@ router
     ctx.response.body = { success: true }
     ctx.response.status = 201
   })
+  .delete('/launches/:id', async (ctx) => {
+    if (ctx.params?.id) {
+      const result = launches.removeOne(Number(ctx.params.id));
+      ctx.response.body = { success: result }
+    }
+  })
 ;
 
 export default router;
