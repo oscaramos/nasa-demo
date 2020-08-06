@@ -1,5 +1,9 @@
 # NASA Mission Control Deno Project
 
+## Deployment
+
+The website is available on: http://18.144.133.4:8000/index.html
+
 ## Installation
 
 Ensure you have Deno installed: https://deno.land/
