@@ -15,8 +15,11 @@ function initValues() {
 }
 
 function loadLaunches() {
-  // TODO: Once API is ready.
-  // Load launches and sort by flight number.
+  return fetch('/launches')
+    .then(resp => resp.json())
+    .then(fetchedLaunches => {
+      launches = fetchedLaunches.sort((a, b) => a.flightNumber < b.flightNumber)
+    })
 }
 
 function loadPlanets() {
@@ -31,8 +34,6 @@ function loadPlanets() {
 }
 
 function abortLaunch() {
-  // TODO: Once API is ready.
-  // Delete launch and reload launches.
 }
 
 function submitLaunch() {
@@ -49,16 +50,6 @@ function submitLaunch() {
 function listUpcoming() {
   const upcomingList = document.getElementById("upcoming-list");
   upcomingList.innerHTML = `<div class="list-heading">${numberHeading} ${dateHeading} ${missionHeading} ${rocketHeading} ${targetHeading}</div>`;
-  const launches = [
-    {
-      upcoming: true,
-      launchDate: new Date(),
-      flightNumber: 1002,
-      mission: 'NASA DEMO',
-      rocket: 'Falcon One',
-      target: "Mars"
-    }
-  ]
   launches
     .filter((launch) => launch.upcoming)
     .forEach((launch) => {

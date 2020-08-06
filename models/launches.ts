@@ -6,7 +6,7 @@ interface Launch {
   mission: string;
   rocket: string;
   customers: Array<string>;
-  launchesDate: number;
+  launchDate: number;
   upcoming: boolean;
   success?: boolean;
   target?: string;
@@ -34,15 +34,13 @@ export async function downloadLaunchData() {
       flightNumber: launch["flight_number"],
       mission: launch["mission_name"],
       rocket: launch["rocket"]["rocket_name"],
-      launchesDate: launch["launch_date_unix"],
+      launchDate: launch["launch_date_unix"],
       upcoming: launch["upcoming"],
       success: launch["launch_success"],
       customers,
     }
 
     launches.set(flightData.flightNumber, flightData);
-
-    log.info(JSON.stringify(flightData))
   }
 }
 
